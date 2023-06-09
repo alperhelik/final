@@ -1,0 +1,224 @@
+---
+title: "YAŞAM MEMNUNİYETİNİ ETKİLEYEN FAKTÖRLERİN TÜRKİYEDEKİ İLLER ÖRNEĞİ ÜZERİNDEN İNCELENMESİ-GELİR ETKİSİ"
+author: 
+  - Alper Helik[^1]
+bibliography: ../bibliography/biblio.bib
+csl: ../csl/apa-tr.csl
+header-includes:
+  - \usepackage{polyglossia}
+  - \setmainlanguage{turkish}
+  - \usepackage{booktabs}
+  - \usepackage{caption} 
+  - \captionsetup[table]{skip=10pt}
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_height: 3
+    fig_width: 4
+    keep_tex: no
+    latex_engine: xelatex
+    number_sections: yes
+    toc: no
+geometry: margin=1in
+link-citations: yes
+urlcolor: blue
+fontsize: 12pt
+biblio-style: apalike
+abstract: |
+  Yaşam memnuniyetini etkileyen faktörleri iller ve bölgeler bazında gerekli özet istatistikleri, grafikleri ve istatistiksel testleri yaparak inceledim.
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+<!-- ======================================================================= -->
+<!-- ============================== NOTLAR ================================= -->
+<!-- ======================================================================= -->
+[^1]: 19080220, [Github Repo](https://github.com/alperhelik/final)
+
+# Giriş
+
+Aynı zamanda yaşam doyumu olarak adlandırabileceğimiz yaşam memnuniyeti, (bireyin hayattan ne derecede memnun olduğunun, yaşamından ne kadar hoşlandığının önemli bir göstergesi olarak kabul edilebilir.) Elbette bireylerin yaşam doyumu üzerinde etkiye sahip birçok sayıda değişken vardır. Gelir, sağlık, güvenlik, barınma, eğitim gibi faktörler her bireyin temel ihtiyacı olup mutluluk düzeyleri üzerinde kuşkusuz önemli yerlere sahiptir. Ele alacağımız çalışmanın amacı ise daha önce de değindiğimiz gibi Türkiye İstatistik Kurumundan edindiğimiz 2015 yılına ait 81 gözlem ve 40’ı aşkın değişkene sahip verilerle ülkemizdeki popülasyonların mutluluk düzeylerini etkileyen değişkenlerden gelirin, çeşitli istatistiksel çalışmalarla ne oranda önem arz ettiğini incelemek olacak. (Çalışma neticesinde, bireyin yaşı, cinsiyeti, medeni durumu, eğitim durumu, çalışma durumu, gelir düzeyinden memnuniyeti, sağlığından memnuniyet, aldığı eğitimden memnuniyet, sosyal hayatından memnuniyet, asayiş hizmetlerinden memnuniyet ve sosyal güvenlik kurumu hizmetlerinden memnuniyet faktörlerinin yaşam memnuniyeti üzerinde etkili olduğu tespit edilmiştir.) KARACAASLAN’ın 2021 yılında bireyler üzerinden edindiği istatistiksel verilerle vardığı bu sonuç çalışmamızda yer verdiğimiz değişkenlerin doğruluğunu ve ehemmiyetini kanıtlar niteliktedir.
+[@karaaslan2021bireylerin]
+## Çalışmanın Amacı
+
+Bu çalışmada TUİK’ in 2015 yılına ait illere göre yaşam endeksi verisi kullanılarak, Türkiye örneği üzerinde yaşam memnuniyetini etkileyen değişkenler arasından, gelirin mutluluk düzeyi üzerine nihai etkisini inceleyeceğiz. Yaşam memnuniyeti üzerine yapılan daha önceki çalışmalardan ortaya çıkan sonuca göre birçok değişken yaşam memnuniyeti üzerinde önem arz etmektedir. Yapacağım çalışmada gelirin ve mutluluk düzeyinin Türkiye üzerindeki iller üzerinden incelemesini ele alacağız, bölgeler arası kişi başına düşen tasarruf mevduatı miktarı, orta ve üst gelir grubundaki hane halkının oranı, temel ihtiyaçlara ulaşım noktasında sıkıntı çeken hanelerin oranı gibi değişkenleri diğer değişkenlerde nispeten göz önünde bulundurularak coğrafi bölgeler üzerindeki ortalamaları ve bölgelere ait illerin genel mutluluk düzeylerinin ortalama gözlemleri sonucunda gelirin mutluluk düzeyi üzerine etkisini bölgesel bazda ele almış olacağız. Araştırmada cevabı aranacak sorular şunlardır;
+1)Temel ihtiyaçlara ulaşılabilirlik ve gelir düzeyinin mutluluk düzeyi ile ilişkisinin bölgesel olarak dağlımı?
+2)Bölgesel olarak gelir ve mutluluk düzeyi dağılımının illerin gelir ve mutluluk düzeyi ilişkileri ile farklılıkları?
+3)Mutluluk düzeyinin belirlenmesinde gelirin etkisi?
+Çalışmamız boyunca elimizdeki istatiksel verileri kullanarak yukardaki sorulara cevap arayacağız ve bulduğumuz cevaplar neticesinde gelirin mutluluk düzeyi üzerine etkisini bölgelere göre sıralayarak incelemede bulunacağız. Analizimin sonucunda nihai olarak tüm insanlığın arayışında olduğu mutluluk düzeyinin gelir düzeyi ile ilişkisini toplumun geniş bir kitlesi üzerinden inceleyerek ne denli bir etkiye sahip olduğu veya olmadığı hakkında fikir sahip olacağız.
+
+
+## Literatür 
+
+Guoqiang TIAN ve Liyan YANG’ın çalışmalarına göre (Eastlerin paradoksunu inceleyin- hayatlarımızda bir bulmaca “gelirin mutluluk düzeyine etkisi? “. Ortalama mutluluk seviyeleri
+Ülkeler zenginleştikçe artmaz. Bu teori, çalışmak için bizlere bir temel oluşturur.
+Sosyal mutluluğu en üst düzeye çıkarmak ve bireylerin mutluluk düzeyini en üst düzeye çıkarmaya bağlıdır bu durum ise bireysel faydaya dayanır. Hem maddi malları hem de maddi olmayan malları dikkatle incelediğimizde ve bütünsel olarak göz önüne aldığımızda. Mevcut referans grubu teorisi ve” ihmal edilen değişkenler" teorisi Bireysel ve sosyal refah / mutluluk arasındaki temel çatışmaya dayanır. Maddi olmayan durumla olumlu ilişkili kritik bir gelir seviyesi vardır ve gelir düzeyindeki artış mutluluğu doğrudan arttırır. Kritik gelir seviyesine ulaşıldığında ise gelirdeki artış mutluluk düzeyinde artışa sebep olmaz
+Ve aslında biraz şaşırtıcı, ortalama mutluluk aslında kritik gelir seviyesinin aşılmasının ardından azalır, bu da Pareto verimsiz sonuçlara neden olur.) Teoriden çıkan sonucun politik olarak anlamı şudur: Bir hükümet maddi ve maddi olmayan malları dengeli bir şekilde teşvik etmelidir. Sonuç alarak YANG ve TIAN’ın araştırmaları ve gözlemlerinin sonucu olarak varacağımız sonuç gelirin mutluluk düzeyi üzerine etkisinin Eastlerin paradoksuna ve kritik bir gelir düzeyine bağlı olduğu sonucudur çalışmamızda bölgelerin gelir düzeylerinin bu paradoksa paralelliği noktasında çalışmamıza fayda sağlayabileceği düşüncesindeyim.  Veenhoven, R. (1996) yılındaki çalışmasında gelir ve mutluluk düzeyi üzerine etkisini gelir dağılımındaki adaletsizliğe dayandırarak şu şekilde ifade ediyor: (Parasal kazançlar, gelir güvenliği (varlıkları koruyan kanun ve yasalar) ve gelir eşitliği derecesi gibi faktörleri irdeleyerek bugün hala önemli olan yoksulluk ve sosyal eşitsizliğin mutluluk üzerine etkisini tartışma konusu olarak işliyor.) Gelirin mutluluk düzeyine etkisinin yanında diğer değişkenlere de Türkiye özelinde değerlendiren KARAASLAN ise gelirden ziyade kamu kaynaklarına ve sağlığa erişimin yaşam doyumu üzerine etkisinin ülkemiz genelinde en önemli faktör olduğunu şu şekilde ifade ediyor; (Türkiye’de yaşam memnuniyetini etkileyen en önemli faktör sağlık olarak bulunmuştur. Sağlık hizmetleri başta olmak üzere kamu hizmetleri de yine yaşam memnuniyetini belirleyen önemli faktörler olarak tespit edilmiştir.) fakat bunun yanında KARAASLAN çalışmasında referans aldığı popülasyonda (Gelir düzeyinden çok memnun olan bireyin referans gruba göre
+yaşamından ne memnun ne memnun olmama olasılığı %36,2 daha az iken
+yaşamından çok memnun olma olasılığı %102,5 daha fazladır) değerlendirmesiyle gelir etkisinin mutluluk düzeyine etkisinin yadsınamaz ve incelemeye değer olduğunu bizlere gösteriyor. KAHYAOGLU’nun gelir ve mutluluk düzeyi üzerine Türkiyedeki incelemeside çalışmamızı destekler ve incelemeye değer nitelikte. KAHYAOGLU ise yaptığı 6714 gözlemli anket çalışmasının sonucunda vardığı şu sonuçta gelirin mutluluk düzeyine etkisi üzerine ele alacağımız çalışmada bizi destekler niteliktedir. (r. Buradan elde
+edilen sonuç ile yaşam memnuniyeti araştırmasındaki sonuç yine benzer bir nitelik
+göstermektedir. Son olarak, aylık harcama miktarı ile finansal durum arasındaki
+ilişki, maddi durumu iyi olup yüksek harcamalarda bulunan öğrencilerin yaşam
+memnuniyetlerinin daha yüksek olduğunu sonucu elde edilmiştir. Üzerinde çalışılan
+yaşam memnuniyeti araştırmasında da gelir düzeyi yükseldikçe bireylerin yaşam
+memnuniyetlerinin arttığı sonucu bulunmuştur.) 
+
+# Veri 
+
+Çalışmamda kullandığım veri setini TÜİK’inin veri ve istatistik portalında bulunan Gelir, Yaşam, Tüketim ve Yoksulluk başlığı altındaki İllerde Yaşam Endeksi veri grubunun İllerde Yaşam Endeksi veri setini belirleyerek çalışmama başladım. Çalışmamda bu veri setini kullanma sebebim sosyal bilimlerle uğraşan tüm araştırmacılar ve insanlığın büyük bir kısmı gibi gelirin mutluluk düzeyi üzerine etkisini merak etmemdi. Literatür taramamda ise daha önce mutluluk ve gelir düzeyi ilişkisi ile ilgili ulaştığım kaynaklarda bölgeler üzerine bir değerlendirme ile karşılaşmadım bu sebeple bölgeler üzerinde mutluluk ve gelir arasındaki ilişkiyi çalışmayı amaçladım fakat ulaştığım veri gözlem ve değişken sayısı olarak çalışmamıza uygun olmasına rağmen kategorik değişkene sahip değildi bu nedenle verime kategorik veri olarak veri setimin gözlemleri olan illerin bulunduğu coğrafi bölgeleri de ekleyip çalışmama başladım. Veri setim ve veri setime ekleyeceğim coğrafi bölgelerin bulunduğu veriyi               R Studio programında birleştirip çalışmama uygun şekilde düzenledim. Ardından verilerin özet istatistiklerini(ortalama, standart sapma, maksimum, minimum vb.) gibi değerlerini elde edip ilgili tabloda (Tablo \ref{tab:ozet}) gösterdim. Çalışmam bunun sonucunda uygun hipotezleri ve testleri yapma aşamasına geldi.
+
+
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(here)
+veri <- readxl::read_xls("C:\\Users\\90554\\Desktop\\final\\Final\\data\\istatistik_veri.xls")
+
+veri <- veri %>% 
+  janitor::clean_names()
+
+bolgeler <- readxl::read_xlsx("C:\\Users\\90554\\Desktop\\final\\Final\\data\\bölgeler.xlsx")
+
+veri <- veri %>% 
+  mutate(across(everything(), as.numeric))
+
+veri <- veri %>% 
+  select(-il_province)
+
+bolgeler <- bolgeler %>% 
+  janitor::clean_names()
+  
+sehir_ad <- bolgeler %>% 
+  select(sehir_ad)
+bolge <- bolgeler %>% 
+  select(bolge)
+veri <- veri %>% 
+  mutate(bolge = bolge)
+veri <- veri %>% 
+  mutate(sehir_ad)
+veri <- veri %>% 
+  select(-bolge)
+veri <- veri %>% 
+  mutate(bolge)
+
+veri <- veri %>% 
+  select(sehir_ad, bolge, everything())
+veri <- veri %>% 
+  mutate(temel_ihtiyacları_karsılanmayanların_orani = temel_ihtiyaclarini_karsilayamadigini_beyan_eden_hanelerin_orani)
+veri <- veri %>% 
+  select(-temel_ihtiyaclarini_karsilayamadigini_beyan_eden_hanelerin_orani)
+
+```
+
+ 
+
+```{r, echo=FALSE}
+library(xtable) 
+# devtools::install_github("emraher/summarytools")
+library(summarytools)
+st_options(lang = "tr")
+```
+
+
+
+
+
+
+```{r results='asis', echo=FALSE}
+library(xtable) 
+library(summarytools)
+st_options(lang = "tr")
+veri %>%
+  select("mutluluk_duzeyi", "ortalama_gunluk_kazanc", "sagligindan_memnuniyet_orani", "istihdam_orani", "temel_ihtiyacları_karsılanmayanların_orani") %>% 
+  descr(stats = c("mean", "sd", "min", "med", "max"), transpose = TRUE) %>% 
+  xtable(caption = "Özet İstatistikler",
+         label = "tab:ozet",
+         align = c("l", "c", "c", "c", "c", "c")) %>% 
+  print(booktabs = TRUE, comment = FALSE, caption.placement = "top")
+```
+
+
+
+
+# Yöntem ve Veri Analizi
+
+İllere göre yaşam endeksi verilerinden yararlanarak mutlluk düzeyini belirleyen faktörleri değerlendirdiğim çalışmamda gerekli değişkenleri ve aralarındaki ilişkiyi uygun grafik ve özet istatistik tabloları ile göstermeye çalıştım. Ardından Robust ANOVA (Kruskal-Walls) testini yaptım.
+
+$$
+Y_t = \beta_0 + \beta_N N_t + \beta_P P_t + \beta_I I_t + \varepsilon_t
+$$
+
+Bu bölümde analize ilişkin farklı tablolar ve grafiklere yer verilmelidir. Çalışmanıza uygun biçimde histogram, nokta grafiği (Şekil \@ref(fig:plot) gibi), kutu grafiği, vb. grafikleri bu bölüme ekleyiniz. Şekillerinize de gerekli göndermeleri bir önceki cümlede gösterildiği gibi yapınız.
+
+
+
+```{r, echo=FALSE}
+
+rstatix::kruskal_test(veri, mutluluk_duzeyi ~ ortalama_gunluk_kazanc)
+
+rstatix::kruskal_test(veri, mutluluk_duzeyi ~ temel_ihtiyacları_karsılanmayanların_orani)
+
+rstatix::kruskal_test(veri, mutluluk_duzeyi ~ sagligindan_memnuniyet_orani)
+
+```
+
+
+
+```{r, echo=FALSE}
+ctres <- cor.test(veri$mutluluk_duzeyi, 
+                  veri$ortalama_gunluk_kazanc, 
+                  method = "pearson")
+
+ctres <- cor.test(veri$mutluluk_duzeyi, 
+                  veri$temel_ihtiyacları_karsılanmayanların_orani, 
+                  method = "pearson")
+ctres <- cor.test(veri$ortalama_gunluk_kazanc, 
+                  veri$temel_ihtiyacları_karsılanmayanların_orani, 
+                  method = "pearson")
+```
+
+
+```{r plot, fig.align='center', fig.cap='Muhteşem Bir Grafik', echo=FALSE}
+veri %>% 
+  select(mutluluk_duzeyi, ortalama_gunluk_kazanc, temel_ihtiyacları_karsılanmayanların_orani) %>% 
+  GGally::ggpairs()
+```
+
+```{r, echo=FALSE}
+dt <- veri %>%
+  select(mutluluk_duzeyi, ortalama_gunluk_kazanc)
+  dt %>% 
+  ggplot(aes(mutluluk_duzeyi, ortalama_gunluk_kazanc)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ 
+```
+
+
+```{r, echo=FALSE}
+
+veri %>% 
+  na.omit() %>% 
+  ggplot(aes(x = bolge, y = mutluluk_duzeyi)) +
+  geom_boxplot() +
+  labs(x = "Bölge",
+       y = "Mutluluk Düzeyi")
+
+
+
+
+```
+
+
+
+
+# Sonuç
+Saçılım grafiğinden ve yapmış olduğum hipotez testinden edindiğim korelasyon değerlerini incelediğimde temel ihtiyaçlarını karsılayamayanların değerine göre ortalama gunlük kazanç değerinin mutluluk düzeyi üzerine etkisinin ters orantılı olarak daha fazla olduğunu gözlemledim.Sonuç olarak gelir düzeyindeki artışın doğrudan mutluluk düzeyini arttırma gibi bir durumu olmasa da mantıksal olarak temel ihtiyaçları karşılama oranını etkilediğinden dolaylı etkilidir diyebiliriz. Bölgeler özelinde yaptığım incelemede ise coğrafi bölgelerden en mutlu bölgenin ege bölgesi olduğu sonucuna vardım.Devamında çalışmamı geliştirmek ve daha doğru sonuçlara ulaşabilmek için veri setimizi daha geniş bir zamanı ve daha okunabilir gerçekçi değişkenleri barındıracak şekilde geliştirebiliriz. 
+
+\newpage
+# Kaynakça {#references}
+<div id="refs"></div>
+
